@@ -1,0 +1,323 @@
+<style>
+    .profile-pic {
+        height: 100%;
+        width: fit-content;
+        object-fit: cover;
+    }
+
+    .file-upload {
+        display: none;
+    }
+
+    .circle {
+        margin: auto;
+        border-radius: 1000px !important;
+        overflow: hidden;
+        width: 10%;
+        height: 10%;
+        border: 3px solid #9c27b0;
+        top: 72px;
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+        transition: width 0.5s ease-in-out;
+
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .circle:hover {
+        width: 15%;
+        border: 3px solid #e43a47;
+        transition: width 0.5s ease-in-out;
+    }
+</style>
+<div class="profile-page sidebar-collapse">
+    <!-- Navbar -->
+    {{>header}}
+    <!-- End Navbar -->
+    <div class="wrapper">
+        <div class="page-header clear-filter page-header-small" filter-color="orange">
+            <div class="page-header-image" data-parallax="true"
+                 style="background-image:url('/images/boston-public-library-Mi8ozXhtmqI-unsplash.jpg');">
+            </div>
+            <div class="container">
+                <div class="">
+                    <div class="circle" onclick='$(".file-upload").click();'>
+                        <img class="profile-pic" title="click to upload picture" rel="tooltip"
+                             src="http://static.asianetnews.com/img/default-user-avatar.png"/>
+                    </div>
+                    <input name="InputFile" required="" class="file-upload" type="file" accept="image/*"/>
+                </div>
+                <h3 class="title">{{user.email}}</h3>
+                <p class="category">{{user.type}}</p>
+                {{#if user}}
+                    {{#if status}}
+                    <div class="alert alert-success" style="margin-bottom: -130px; margin-top:80px;" role="alert">
+                        <div class="container">
+                            <div class="alert-icon">
+                                &tridot;
+                            </div>
+                            Applied sucessfully <b><a class="text-light" href="/users/profile">get back to profile</a></b>
+                            <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                            </button>
+                        </div>
+                    </div>
+                    {{else}}
+                        <div class="alert alert-warning" style="margin-bottom: -130px; margin-top:80px;" role="alert">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    &tridot;
+                                </div>
+                                Your Request has been Rejected <b><a class="text-light" href="/users/profile">get back to profile</a></b>
+                                <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">
+                                            &times;
+                                        </span>
+                                </button>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <h3 class="title">About me</h3>
+                {{#if hasErrors}}
+                    <div class="alert alert-danger" role="alert">
+                        {{# each messages}}
+                            <div class="container">
+                                <div class="alert-icon">
+                                    &tridot;
+                                    <!--                                            <i class="now-ui-icons objects_support-17"></i>-->
+                                </div>
+                                <strong>alert!</strong> {{this}}
+                                <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                        aria-label="Close">
+                                          <span aria-hidden="true">
+                                              &times;
+                                          </span>
+                                </button>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/if }}
+                </table>
+                <form method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputEmail4">First name</label>
+                            <input type="text" class="form-control" id="firstname" name="firstname"
+                                   placeholder="Name.." value="{{user.firstName}}" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Middle name</label>
+                            <input type="text" class="form-control" id="middlename" name="middlename"
+                                   placeholder="Fathers' name.." value="{{user.middleName}}" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputPassword4">Last name</label>
+                            <input type="text" class="form-control" id="lastname" name="lastname"
+                                   placeholder="Surname.." value="{{user.lastName}}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="gender">Gender:</label>
+                            {{#if user.gender}}
+                                {{user.gender}}
+                            {{else}}
+                                <div class="form-check form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="gender" id="radio-male"
+                                               value="Male" required>
+                                        <span class="form-check-sign"></span>
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-radio">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="gender" id="radio-Female"
+                                               value="Female" required>
+                                        <span class="form-check-sign"></span>
+                                        Female
+                                    </label>
+                                </div>
+                            {{/if}}
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="gender">Date of Birth:</label>
+                            <!-- input with datepicker -->
+                            <div class="form-group">
+                                <input type="text" class="form-control date-picker" name="dob" id="dob"
+                                       value="{{#if user.dob}}{{user.dob}}{{else}}09/16/1997{{/if}}"
+                                       data-datepicker-color="primary" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                   value="{{user.email}}" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="contact">Contact</label>
+                            <input type="tel" class="form-control" id="contact" name="contact"
+                                   placeholder="Contact" value="{{user.contact}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                               placeholder="1234 Main St" value="{{user.address}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Address 2</label>
+                        <input type="text" class="form-control" id="address2" name="address2"
+                               placeholder="Apartment, studio, or floor" value="{{user.address2}}">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" value="{{user.city}}" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="state">State</label>
+                            <select id="state" name="state" class="form-control" required>
+                                <option selected value="{{#if user.state}}{{user.state}}{{/if}}">{{#if
+                                        user.state}}{{user.state}}{{else}}Choose...{{/if}}</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Madhyprades">Madhyprades</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Punjab">Punjab</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="pin">Pin code</label>
+                            <input type="text" class="form-control" id="pin" name="pin" value="{{user.pinCode}}" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <h3 class="title">About my profession</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" id="department" name="department" value="{{user.department}}" required>
+                        </div>                        
+                        <div class="form-group col-md-4">
+                            <label for="designation">Designation</label>
+                            <input type="text" class="form-control" id="designation" name="designation" value="{{user.designation}}" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="skill">skill</label>
+                            <select id="skill" name="skill" class="form-control" required>
+                                <option selected value="{{#if user.skill}}{{user.skill}}{{/if}}">{{#if
+                                        user.skill}}{{user.skill}}{{else}}Choose...{{/if}}</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Maths">Maths</option>
+                                <option value="English">English</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/users/profile" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Mini Modal -->
+    <div class="modal fade modal-mini modal-primary" id="ApplyModel" tabindex="-1" role="dialog"
+         aria-labelledby="ApplyModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <p>Apply a Request as</p>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6"><a href="/dashboard" class="btn btn-link btn-neutral">
+                                <div class="modal-profile">
+                                    <i class="fas fa-5x fa-user-graduate"></i>
+                                </div>
+                                <span>&nbsp;&nbsp;Student&nbsp;&nbsp;</span>
+                            </a></div>
+                            <div class="col-6"><a href="/dashboard" class="btn btn-link btn-neutral">
+                                <div class="modal-profile"><i class="fas fa-5x fa-user-tie"></i>
+                                </div>
+                                <span>Employee</span>
+                            </a></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link btn-neutral">Back</button>
+                    <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    {{>footer}}
+
+</div>
+
+<script type="text/javascript">
+
+    var readURL = function (input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(".file-upload").onchange(function () {
+        readURL(this);
+    });
+    $(".circle").on('click', function () {
+        $(".file-upload").click();
+    });
+</script>
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Preview').attr('src', e.target.result);
+                $('#InputFile').css('background-color', '#2196f3');
+                $('#InputFileReset').css('background-color', '#e91e63');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#InputFile").change(function () {
+        readURL(this);
+    });
+    $("#InputFileReset").click(function () {
+        $('#Preview').attr('src', 'img/place/G6.jpg');
+        $("html, body").animate({scrollTop: 0}, 1000);
+        $('#InputFile').css('background-color', '#00bcd4');
+        $('#InputFileReset').css('background-color', '#999999');
+    });
+
+</script>

@@ -1,0 +1,131 @@
+<div class="login-page sidebar-collapse">
+    <!-- Navbar -->
+    {{>header}}
+    <!-- End Navbar -->
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image"
+             style="background-image:url('/images/kristopher-roller-PC_lbSSxCZE-unsplash.jpg')"></div>
+        {{#if hasErrors}}
+            <div class="alert alert-danger" style="margin-bottom: -150px; margin-top:100px " role="alert">
+                {{# each messages}}
+                    <div class="container">
+                        <div class="alert-icon">
+                            &tridot;
+                            <!--                                            <i class="now-ui-icons objects_support-17"></i>-->
+                        </div>
+                        <strong>alert!</strong> {{this}}
+                        <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                aria-label="Close">
+                                          <span aria-hidden="true">
+                                              &times;
+                                          </span>
+                        </button>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if }}
+        <div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <div class="card card-login card-plain">
+                        <form  id="LoginForm" class="form" method="POST">
+
+                            <div class="card-header text-center">
+                                <div class="logo-container">
+                                    <img src="/images/cm-plain.png" alt="">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                           placeholder="Email..." required>
+                                </div>
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                          <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <input type="password" id="password" name="password" placeholder="Password..."
+                                           class="form-control" required/>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                <button type="submit" id="btn_Login" class="btn btn-primary btn-round btn-lg btn-block">Get Started <i
+                                        class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </button>
+
+                                <div class="pull-left">
+                                    <h6>
+                                        <a href="/users/signup" class="link">Create Account</a>
+                                    </h6>
+                                </div>
+                                <div class="pull-right">
+                                    <h6>
+                                        <a href="/users/forget-password" class="link">Forgot Password?</a>
+                                    </h6>
+                                </div>
+                                <br>
+                                <!--                                <div id="my-signin2"></div>-->
+                                OR
+                                <br>
+                                Login with
+                                <a class="btn btn-neutral btn-google btn-icon btn-round" href="/users/google">
+                                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+</div>
+</div>
+<!--Ajax Login-->
+<script>
+    $(document).ready(function(){
+        $("form#LoginForm").on('submit', function(e){
+            e.preventDefault();
+            var data = $('input[name=email]').val();
+            $.ajax({
+                type: 'post',
+                url: '/users/login',
+                data: data,
+                dataType: 'text'
+            })
+            .done(function(data){
+                $('br').html(data.email);
+            });
+        });
+    });
+</script>
+<script>
+    function onSuccess(googleUser) {
+        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
+    function onFailure(error) {
+        console.log(error);
+    }
+
+    function renderButton() {
+        gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

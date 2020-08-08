@@ -1,0 +1,200 @@
+<div class="user-profile">
+    <div class="wrapper ">
+        {{>dashboard/sidebar}}
+        <div class="main-panel" id="main-panel">
+            {{>dashboard/header}}
+            <div class="content">
+                <form  method="post">
+                    <input type="hidden" id="id" name="id" value="{{items._id}}">
+                <div class="row">
+                    <div class="col-md-8"> 
+                        <div class="card">
+                            <div class="card-header pb-5">
+                                <h5 class="title" style="float: left;">Edit Profile</h5>
+                                <button type="submit" style="float: right;" class="btn btn-primary">Save</button> 
+                                {{#if msg}}<script>swal("Successfully updated!", " {{msg}}!", "success");</script>{{/if}}
+                            </div>
+                            <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" disabled="" placeholder="N/A" value="{{items.firstName}} {{items.middleName}} {{items.lastName}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label for="inputEmail4">Enrollment no</label>
+                                                <input type="text" class="form-control" id="enrollmentNo" name="enrollmentNo"
+                                   placeholder="enrollmentNo.." value="{{items.enrollmentNo}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                                    value="{{items.email}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <input type="text" class="form-control" placeholder="Company" value="{{items.gender}}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <div class="form-group">                            
+                                                <label for="dob">Date of Birth:</label>
+                                                <input type="text" class="form-control date-picker" name="dob" id="dob"
+                                                    value="{{#if items.dob}}{{items.dob}}{{else}}09/16/1997{{/if}}"
+                                                    data-datepicker-color="primary" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">                            
+                                                <label for="contact">Contact</label>
+                                                <input type="tel" class="form-control" id="contact" name="contact"
+                                   placeholder="Contact" value="{{items.contact}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" id="address" name="address"
+                                                    placeholder="1234 Main St" value="{{items.address}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">                        
+                                                <label for="address2">Address 2</label>
+                                                <input type="text" class="form-control" id="address2" name="address2"
+                                                    placeholder="Apartment, studio, or floor" value="{{items.address2}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label for="city">City</label>
+                                                <input type="text" class="form-control" id="city" name="city" value="{{items.city}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label for="state">State</label>
+                                                <select id="state" name="state" class="form-control" required>
+                                                    <option selected value="{{#if items.state}}{{items.state}}{{/if}}">{{#if
+                                                            items.state}}{{items.state}}{{else}}Choose...{{/if}}</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Madhyprades">Madhyprades</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label for="pin">Pin code</label>
+                                                <input type="number" class="form-control" id="pin" name="pin" value="{{items.pinCode}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label for="schoolName">School name</label>
+                                                <input type="text" class="form-control" id="schoolName" name="schoolName" value="{{items.schoolName}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7">    
+                                             <div class="form-group">
+                                                <label for="schoolAddress">School address</label>
+                                                <input type="text" class="form-control" id="schoolAddress" name="schoolAddress" value="{{items.schoolAddress}}" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="standard">Standard</label>
+                                                <input type="number" max="12" class="form-control" id="standard" name="standard" value="{{items.standard}}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">    
+                                             <div class="form-group">                                                                    
+                                                <label for="Medium">Medium</label>
+                                                <select id="medium" name="medium" class="form-control" required>
+                                                    <option selected value="{{#if items.medium}}{{items.medium}}{{/if}}">{{#if
+                                                            items.medium}}{{items.medium}}{{else}}Choose...{{/if}}</option>
+                                                    <option value="Gujarati">Gujarati</option>
+                                                    <option value="English">English</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">    
+                                             <div class="form-group"> 
+                                                 <label for="stream">Stream</label>
+                                                <select id="stream" name="stream" class="form-control" required>
+                                                    <option selected value="{{#if items.stream}}{{items.stream}}{{/if}}">{{#if
+                                                            items.stream}}{{items.stream}}{{else}}Choose...{{/if}}</option>
+                                                    <option value="Science">Science</option>
+                                                    <option value="Commerce">Commerce</option>
+                                                    <option value="Arts">Arts</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>      
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="/assets2/img/bg5.jpg" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="author">
+                                    <a href="#">
+                                        <img class="avatar border-gray" src="/assets2/img/mike.jpg" alt="...">
+                                        <h5 class="title">{{items.firstName}} {{items.lastName}}</h5>
+                                    </a>
+                                    <p class="description">
+                                        {{items.email}}
+                                    </p>
+                                </div>
+                                <p class="description text-center">
+                                    {{items.address}}, <br>
+                                    {{items.city}}, <br>
+                                    {{items.state}} - {{items.pinCode}}"
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="button-container">
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            {{>dashboard/footer}}
+        </div>
+    </div>
+</div>

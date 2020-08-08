@@ -1,0 +1,109 @@
+<div class="login-page sidebar-collapse">
+    <!-- Navbar -->
+    {{>header}}
+    <!-- End Navbar -->
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image"
+             style="background-image:url('/images/kristopher-roller-PC_lbSSxCZE-unsplash.jpg')"></div>
+        <div class="content" style="margin-top: 10%;">
+            <div class="container">
+                <div class="row">
+                    <div class="card card-signup" data-background-color="orange">
+                        {{#if hasErrors}}
+                            <div class="alert alert-danger" style="margin-bottom: -50px;" role="alert">
+                                {{# each messages}}
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            &tridot;
+                                            <!--                                            <i class="now-ui-icons objects_support-17"></i>-->
+                                        </div>
+                                        <strong>alert!</strong> {{this}}
+                                        <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                                aria-label="Close">
+                                          <span aria-hidden="true">
+                                              &times;
+                                          </span>
+                                        </button>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/if }}
+                        <form class="form" action="/users/signup" method="POST">
+                            <div class="card-header text-center">
+                                <h3 class="card-title title-up">Sign Up</h3>
+                                <div class="social-line">
+                                    <a href="#pablo" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+                                    <a href="#pablo" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#pablo" class="btn btn-neutral btn-google btn-icon btn-round">
+                                        <i class="fab fa-google-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group no-border">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                           placeholder="Email...">
+                                </div>
+                                <div class="input-group no-border">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                      </span>
+                                    </div>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                           placeholder="Password...">
+                                </div>
+                                <div class="input-group no-border">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                      </span>
+                                    </div>
+                                    <input type="password" id="confirm-password" name="confirm-password"
+                                           onchange="checkPassword(this.value)" class="form-control cp"
+                                           placeholder="Retype Password...">
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                                <button type="submit" class="btn btn-neutral btn-round btn-lg">Get Started <i
+                                        class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <a href="/users/login" class="btn btn-outline-default btn-round btn-white btn-lg">Already have an
+                        account?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+    <script type="text/javascript">
+        function checkPassword(p2) {
+            var p1 = $("#password").val();
+            if (p1 == p2) {
+                $("#password").addClass('form-control-success');
+                $("#password").parent().addClass('has-success');
+                $("#confirm-password").addClass('form-control-success');
+                $("#confirm-password").parent().addClass('has-success');
+            } else {
+                $("#password").addClass('form-control-danger');
+                $("#password").parent().addClass('has-danger');
+                $("#confirm-password").addClass('form-control-danger');
+                $("#confirm-password").parent().addClass('has-danger');
+            }
+        };
+    </script>
+</div>
+</div>

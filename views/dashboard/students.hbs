@@ -1,0 +1,150 @@
+<div class="user-profile">
+    <div class="wrapper ">
+        {{>dashboard/sidebar}}
+        <div class="main-panel" id="main-panel">
+            {{>dashboard/header}}
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Students</h4>
+                            </div>
+                            <div class="card-body">
+                                {{#if students}}
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                            <th>
+                                                Picture
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                State
+                                            </th>
+                                            <th>
+                                                City
+                                            </th>
+                                            <th>
+                                                PinCode
+                                            </th>
+                                            <th>
+                                                Email
+                                            </th>
+                                            <th>
+                                                Contact
+                                            </th>
+                                            <th class="text-right">
+                                                Action
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            {{# each students }}
+                                                <tr>
+                                                    <td class="dp-sm">
+                                                        <a class="nav-link" href="#">
+                                                            <img class="rounded-circle"
+                                                                 src="../assets2/img/mike.jpg"
+                                                                 alt="">
+                                                        </a>
+                                                    </td>
+                                                    <td>{{this.firstName}} {{this.lastName}}</td>
+                                                    <td>{{this.address}}</td>
+                                                    <td>{{this.state}}</td>
+                                                    <td>{{this.city}}</td>
+                                                    <td>{{this.pinCode}}</td>
+                                                    <td>{{this.email}}</td>
+                                                    <td>{{this.contact}}</td>
+                                                    <td class="text-right">
+                                                        <button class="btn btn-info btn-round btn-icon btn-sm"
+                                                                data-toggle="modal" data-target="#Model{{this._id}}">
+                                                            <i class="now-ui-icons users_single-02"></i>
+                                                        </button>
+                                                        <div class="modal fade" id="Model{{this._id}}" tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="Model{{this._id}}Label" aria-hidden="true"
+                                                             style="display: none;">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card card-user">
+                                                                            <div class="image">
+                                                                                <img src="/images/boston-public-library-Mi8ozXhtmqI-unsplash.jpg"
+                                                                                     alt="...">
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <div class="author">
+                                                                                    <a href="#">
+                                                                                        <img class="avatar border-gray"
+                                                                                             src="../assets2/img/mike.jpg"
+                                                                                             alt="...">
+                                                                                        <h5 class="title">{{this.firstName}} {{this.middleName}} {{this.lastName}}</h5>
+                                                                                    </a>
+                                                                                    <p class="description">
+                                                                                        <span class="font-weight-bold"> Email: </span>{{this.email}}
+                                                                                        <br>
+                                                                                        <span class="font-weight-bold"> Contact: </span>{{this.contact}}
+                                                                                        <br>
+                                                                                        <span class="font-weight-bold"> Gender: </span>{{this.gender}}
+                                                                                        <br>
+                                                                                        <span class="font-weight-bold"> Date of birth: </span>
+                                                                                        <br>
+                                                                                        {{this.dob}}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <p class="description text-center">
+                                                                                    <span class="font-weight-bold">Address:</span>
+                                                                                    <br>
+                                                                                    {{this.address}}, <br>
+                                                                                    {{this.city}}, {{this.state}}
+                                                                                    - {{this.pinCode}}.
+                                                                                    {{# if this.address2}}
+                                                                                        <span class="font-weight-bold">Address2:</span>
+                                                                                        <br>
+                                                                                        {{this.address}}
+                                                                                    {{/ if}}
+                                                                                </p>
+                                                                                <hr>
+                                                                                <p class="description text-center">
+                                                                                    <span class="font-weight-bold">Registered on:</span>
+
+                                                                                    {{this.registrationDate}}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default">
+                                                                            Edit
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger"
+                                                                                data-dismiss="modal">Close
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                {{else}}
+                                    <p>no students found</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{>dashboard/footer}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.object-fit-cover {
+    object-fit: cover;
+}
+.dp-sm1 {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.dp-sm {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+.dp-sm:hover {
+    width: 200px;
+    height: 200px;
+    transition: 0.5s ease-in-out;
+}

@@ -1,0 +1,193 @@
+<div class="profile-page sidebar-collapse">
+    <!-- Navbar -->
+    {{>header}}
+    <!-- End Navbar -->
+    <div class="wrapper">
+        <div class="page-header clear-filter page-header-small" filter-color="orange">
+            <div class="page-header-image" data-parallax="true"
+                 style="background-image:url('/images/boston-public-library-Mi8ozXhtmqI-unsplash.jpg');">
+            </div>
+            <div class="container">
+                <div class="photo-container">
+                    <img src="http://static.asianetnews.com/img/default-user-avatar.png"
+                         alt="">
+                </div>
+                <h3 class="title">{{user.id}}</h3>
+                <p class="category">{{user.type}}</p>
+                <div class="content">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <div class="button-container">
+                    {{#if verified}}
+                    <a href="#button" class="btn btn-primary btn-round btn-lg" data-toggle="modal"
+                       data-target="#ApplyModel">Apply for a role</a>
+                    {{/if}}
+                </div>
+
+                {{#if hasErrors}}
+                    <div class="alert alert-danger" role="alert">
+                        {{# each messages}}
+                            <div class="container">
+                                <div class="alert-icon">
+                                    &tridot;
+                                    <!--                                            <i class="now-ui-icons objects_support-17"></i>-->
+                                </div>
+                                <strong>alert!</strong> {{this}}
+                                <button type="button" class="close" style="line-height: 1;" data-dismiss="alert"
+                                        aria-label="Close">
+                                          <span aria-hidden="true">
+                                              &times;
+                                          </span>
+                                </button>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/if }}
+                {{#if data}}
+                <h3 class="title">About me</h3>
+                <h5 class="description">
+                    <i class="fa fa-id-card-o" aria-hidden="true"></i> {{data.enrollmentNo}} - {{data.firstName}} {{data.middleName}} {{data.lastName}}
+                     <hr>
+                    <i class="fa fa-birthday-cake" aria-hidden="true"></i> {{data.dob}}
+                    <hr>
+                    <i class="fa fa-map-pin" aria-hidden="true"></i> {{data.address}}, {{data.city}}, {{data.state}} - {{data.pinCode}} {{#if data.address2}} <span class="text-primary">&</span>{{data.address2}}{{/if}}{{data.address2}}
+                    <hr>
+                    <i class="fa fa-mobile" aria-hidden="true"></i> {{data.contact}} - <i class="fa fa-envelope" aria-hidden="true"></i> {{data.email}}
+                </h5>
+                <hr>
+                <h5 class="description">
+                    {{#if data.standard}}
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i> {{data.standard}} - {{data.stream}} ({{data.medium}} medium)
+                        <hr>
+                        <i class="fa fa-building" aria-hidden="true"></i> {{data.schoolName}} | <i class="fa fa-map-marker" aria-hidden="true"></i> {{data.schoolAddress}}
+                    {{else}}
+                        <i class="fa fa-area-chart" aria-hidden="true"></i> {{data.department}} - {{data.skill}}
+                        {{#if data.designation}}
+                        <hr>
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{data.designation}} | <i class="fa fa-money" aria-hidden="true"></i> {{data.salary}}
+                        {{/if}}
+                    {{/if}}
+                </h5>
+                {{/if}}
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <h4 class="title text-center">My Portfolio</h4>
+                        <div class="nav-align-center">
+                            <ul class="nav nav-pills nav-pills-primary nav-pills-just-icons" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#profile" role="tablist">
+                                        <i class="now-ui-icons design_image"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#home" role="tablist">
+                                        <i class="now-ui-icons location_world"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#messages" role="tablist">
+                                        <i class="now-ui-icons sport_user-run"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content gallery">
+                        <div class="tab-pane active" id="home" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="https://scontent-bom1-1.xx.fbcdn.net/v/t31.0-8/18623671_807045359451671_6887249414235865567_o.jpg?_nc_cat=102&_nc_sid=13bebb&_nc_oc=AQlCcjFb7oYJ26yjYoMT_OePCXS0jSnGf0tJqBxK3N3GxPQnWWRwwv1OYW11X78BYKY&_nc_ht=scontent-bom1-1.xx&oh=226ae45a4ce11b322f3cfdd5bee07cc8&oe=5EB80E8E"
+                                             alt="" class="img-raised">
+                                        <img src="https://scontent.fudr1-1.fna.fbcdn.net/v/t31.0-8/p960x960/18620903_807045356118338_9053062547601536862_o.jpg?_nc_cat=111&_nc_sid=13bebb&_nc_oc=AQnekQIQ0nInk4gAo0u-5fPx3oolysfsHhGvrhyWJrpqlwi3hsABfeO1OODwiGGEkcuU7zmWGljA1FowMaNr8Ao9&_nc_ht=scontent.fudr1-1.fna&_nc_tp=6&oh=9138941bbf062d5b0635120a3cab1770&oe=5E825471"
+                                             alt="" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-9/p960x960/46938758_1187504854739051_2234708957698457600_o.jpg?_nc_cat=103&_nc_sid=13bebb&_nc_oc=AQkbDDASyXchy9tKdK8EZ0NhK0NeNwl2ER38gRFShVxcByVkQQ0v8aXA_IrM8jPqZZI&_nc_ht=scontent-bom1-1.xx&_nc_tp=6&oh=6e8431fcaec20279d6db8bfff6a138b2&oe=5EEBD01F"
+                                             alt="" class="img-raised">
+                                        <img src="https://scontent.fudr1-1.fna.fbcdn.net/v/t31.0-8/p720x720/18623635_807045349451672_5242030525173011646_o.jpg?_nc_cat=101&_nc_sid=13bebb&_nc_oc=AQm7cwlmiJQki-vJVHBtPtxFYAgHUanr-JZcijeomWP81Bul-VCpJjMFiMzYIEEbVC4s2dGaxDMCM_3L3sFFcsDt&_nc_ht=scontent.fudr1-1.fna&_nc_tp=6&oh=aab0145c2f7759d42e6ececf0b38bfe1&oe=5EB6F83C"
+                                             alt="" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profile" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="https://scontent-bom1-2.xx.fbcdn.net/v/t31.0-0/p640x640/18620641_807045346118339_2706680377358404579_o.jpg?_nc_cat=100&_nc_sid=13bebb&_nc_oc=AQmJvUdLIFTnc7HQeHm_gqd10tslSAEZ-OsO9UcJ31e9HIIvDT5n-a8FdGlC-gGXOno&_nc_ht=scontent-bom1-2.xx&_nc_tp=6&oh=3a3b5e1ef17aa793dff526b71f64b185&oe=5EF50FF3"
+                                             alt="" class="img-raised">
+                                        <img src="/images/bg6.jpg" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="https://scontent.fudr1-1.fna.fbcdn.net/v/t1.0-9/p960x960/46892952_1187504858072384_9195879835228962816_o.jpg?_nc_cat=105&_nc_sid=13bebb&_nc_oc=AQnIkLXShH9w3LOztERGIQs2t_6k-7_uit1EWTvCxA6HsOg-8Vfq5mPZIcHr0lApXQV4St3dIe3QhNFTchraUrZ-&_nc_ht=scontent.fudr1-1.fna&_nc_tp=6&oh=c9e9a9f6fac3b6c240cbb4e44acead73&oe=5E84E95A"
+                                             alt="" class="img-raised">
+                                        <img src="/images/bg8.jpg" alt="" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messages" role="tabpanel">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="row collections">
+                                    <div class="col-md-6">
+                                        <img src="/images/bg3.jpg" alt="" class="img-raised">
+                                        <img src="/images/bg8.jpg" alt="" class="img-raised">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="/images/bg7.jpg" alt="" class="img-raised">
+                                        <img src="/images/bg6.jpg" class="img-raised">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mini Modal -->
+    <div class="modal fade modal-mini modal-primary" id="ApplyModel" tabindex="-1" role="dialog"
+         aria-labelledby="ApplyModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <p>Apply a Request as</p>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <a href="/users/student-details" class="btn btn-link btn-neutral">
+                                    <div class="modal-profile">
+                                        <i class="fas fa-5x fa-user-graduate"></i>
+                                    </div>
+                                    <span>&nbsp;&nbsp;Student&nbsp;&nbsp;</span>
+                                </a></div>
+                            <div class="col-6">
+                                <a href="/users/employee-details" class="btn btn-link btn-neutral">
+                                    <div class="modal-profile"><i class="fas fa-5x fa-user-tie"></i>
+                                    </div>
+                                    <span>Employee</span>
+                                </a></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link btn-neutral">Back</button>
+                    <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
+    {{>footer}}
+
+</div>
